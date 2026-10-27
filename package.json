@@ -1,0 +1,19 @@
+{
+  "name": "crunchyroll-clone-photos",
+  "version": "1.0.0",
+  "description": "Copia simples do site da Crunchyroll Brasil em modo galeria de fotos (sem nenhum vídeo de anime).",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "crunchyroll",
+    "anime",
+    "clone",
+    "photos-only",
+    "gallery",
+    "pt-br"
+  ],
+  "author": "",
+  "license": "MIT"
+}

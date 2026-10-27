@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Crunchyroll - Assista aos Animes Mais Populares | Galeria de Fotos Oficial</title>
+  <meta name="description" content="Cópia simples da Crunchyroll Brasil em modo galeria de fotos. Catálogo completo de animes com imagens em alta resolução, elenco de dublagem e detalhes.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f47521'><circle cx='12' cy='12' r='10'/><path d='M12 6a6 6 0 1 0 6 6 6 6 0 0 0-6-6zm0 9a3 3 0 1 1 3-3 3 3 0 0 1-3 3z' fill='%23141519'/></svg>">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       Header / Navbar
+       ======================================================================== -->
+  <header class="cr-header" id="mainHeader">
+    <div class="cr-header-container">
+      <div class="cr-header-left">
+        <a href="#" class="cr-logo-link" title="Crunchyroll Brasil">
+          <!-- Crunchyroll Eye Logo SVG -->
+          <svg class="cr-logo-icon" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="16" cy="16" r="16" fill="#F47521"/>
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6ZM16 11.5C13.5147 11.5 11.5 13.5147 11.5 16C11.5 18.4853 13.5147 20.5 16 20.5C18.4853 20.5 20.5 18.4853 20.5 16C20.5 13.5147 18.4853 11.5 16 11.5Z" fill="#141519"/>
+            <circle cx="18" cy="14" r="2.5" fill="#F47521"/>
+          </svg>
+          <span class="cr-logo-text">crunchy<span>roll</span></span>
+          <span class="cr-logo-tag">FOTOS ONLY</span>
+        </a>
+
+        <!-- Desktop Navigation Links -->
+        <nav class="cr-nav">
+          <div class="cr-dropdown">
+            <a href="#catalogo" class="cr-nav-link active">
+              Explorar
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M7 10l5 5 5-5z"/></svg>
+            </a>
+            <div class="cr-dropdown-menu">
+              <a href="#populares" class="cr-dropdown-item">🔥 Mais Populares</a>
+              <a href="#simulcasts" class="cr-dropdown-item">⚡ Lançamentos & Simulcasts</a>
+              <a href="#dublados" class="cr-dropdown-item">🎙️ Dublados em Português</a>
+              <a href="#fotos" class="cr-dropdown-item">📷 Galeria Exclusiva de Fotos</a>
+              <a href="#planos" class="cr-dropdown-item">💎 Planos Crunchyroll Premium</a>
+            </div>
+          </div>
+          <a href="#fotos" class="cr-nav-link">Fotos Oficiais</a>
+          <a href="#planos" class="cr-nav-link">Premium</a>
+          <a href="#noticias" class="cr-nav-link" onclick="showToast('Seção de Notícias atualizada!')">Notícias</a>
+        </nav>
+      </div>
+
+      <div class="cr-header-right">
+        <!-- Live Instant Search -->
+        <div class="cr-search-box">
+          <svg class="cr-search-icon" viewBox="0 0 24 24">
+            <path d="M15.5 14h-.79l-.28-.27C15.41 12.59 16 11.11 16 9.5 16 5.91 13.09 3 9.5 3S3 5.91 3 9.5 5.91 16 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+          </svg>
+          <input type="text" id="searchInput" class="cr-search-input" placeholder="Buscar animes..." autocomplete="off">
+        </div>
+
+        <!-- Watchlist Trigger Button -->
+        <button class="cr-btn-icon" id="watchlistBtn" title="Minha Fila" aria-label="Minha Fila">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2zm0 15l-5-2.18L7 18V5h10v13z"/>
+          </svg>
+          <span class="cr-badge-counter" id="watchlistBadge">0</span>
+        </button>
+
+        <!-- CTA Experimente Grátis -->
+        <a href="#planos" class="cr-btn-trial">
+          <span>Experimente Grátis</span>
+        </a>
+
+        <!-- User Profile Avatar -->
+        <button class="cr-user-btn" id="loginBtn" title="Conta de Usuário">
+          <div class="cr-user-avatar">BR</div>
+          <span>Entrar</span>
+        </button>
+
+        <!-- Mobile Hamburger Menu Button -->
+        <div class="cr-hamburger" id="hamburgerBtn" title="Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       Notice Banner (Photo-only Guarantee)
+       ======================================================================== -->
+  <div class="cr-notice-bar" style="margin-top: var(--cr-header-height);">
+    <div class="cr-notice-container">
+      <span class="cr-notice-tag">MODO FOTOS</span>
+      <span class="cr-notice-icon">📷</span>
+      <span>Esta cópia contém <strong>apenas fotos, pôsteres e capturas de tela oficiais em alta resolução</strong>. Nenhum vídeo é reproduzido.</span>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       Hero Showcase Banner (Auto-rotating Carousel)
+       ======================================================================== -->
+  <section class="cr-hero" id="heroBanner">
+    <!-- Slides will be injected dynamically by JavaScript -->
+    <div id="heroSlidesContainer"></div>
+
+    <!-- Hero Controls -->
+    <div class="cr-hero-nav">
+      <button class="cr-hero-arrow" id="heroPrevBtn" title="Anterior" aria-label="Anterior">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+      <div class="cr-hero-dots" id="heroDots"></div>
+      <button class="cr-hero-arrow" id="heroNextBtn" title="Próximo" aria-label="Próximo">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Category / Genre Filter Tabs
+       ======================================================================== -->
+  <section class="cr-filters-section" id="catalogo">
+    <div class="cr-filter-header">
+      <h3 class="cr-filter-title">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="var(--cr-orange)"><path d="M3 13h2v-2H3v2zm0 4h2v-2H3v2zm0-8h2V7H3v2zm4 4h14v-2H7v2zm0 4h14v-2H7v2zM7 7v2h14V7H7z"/></svg>
+        Filtrar por Categoria
+      </h3>
+      <span id="activeCount" style="font-size: 0.85rem; color: var(--cr-text-secondary);">16 títulos</span>
+    </div>
+    <div class="cr-filter-pills" id="genrePills">
+      <button class="cr-pill active" data-genre="all">Todos</button>
+      <button class="cr-pill" data-genre="Action">Ação & Shonen</button>
+      <button class="cr-pill" data-genre="Supernatural">Sobrenatural</button>
+      <button class="cr-pill" data-genre="Fantasy">Fantasia</button>
+      <button class="cr-pill" data-genre="Comedy">Comédia</button>
+      <button class="cr-pill" data-genre="Adventure">Aventura</button>
+      <button class="cr-pill" data-genre="dublado">Dublados em PT-BR</button>
+      <button class="cr-pill" data-genre="top">Top Avaliados (★ 4.8+)</button>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Section 1: Mais Populares da Temporada
+       ======================================================================== -->
+  <section class="cr-content-section" id="populares">
+    <div class="cr-section-header">
+      <div class="cr-section-title-wrap">
+        <h2 class="cr-section-title">Mais Populares no Brasil</h2>
+        <span class="cr-section-sub">Os títulos mais assistidos e comentados</span>
+      </div>
+      <div class="cr-carousel-controls">
+        <button class="cr-carousel-btn" data-target="carouselPopular" data-dir="-1" title="Rolar para esquerda">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+        <button class="cr-carousel-btn" data-target="carouselPopular" data-dir="1" title="Rolar para direita">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="cr-carousel-track-wrapper">
+      <div class="cr-cards-carousel" id="carouselPopular"></div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Section 2: Lançamentos em Destaque & Simulcasts
+       ======================================================================== -->
+  <section class="cr-content-section" id="simulcasts">
+    <div class="cr-section-header">
+      <div class="cr-section-title-wrap">
+        <h2 class="cr-section-title">Lançamentos & Simulcasts</h2>
+        <span class="cr-section-sub">Episódios direto do Japão com fotos oficiais</span>
+      </div>
+      <div class="cr-carousel-controls">
+        <button class="cr-carousel-btn" data-target="carouselSimulcasts" data-dir="-1">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+        <button class="cr-carousel-btn" data-target="carouselSimulcasts" data-dir="1">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="cr-carousel-track-wrapper">
+      <div class="cr-cards-carousel" id="carouselSimulcasts"></div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Section 3: Dublados em Português
+       ======================================================================== -->
+  <section class="cr-content-section" id="dublados">
+    <div class="cr-section-header">
+      <div class="cr-section-title-wrap">
+        <h2 class="cr-section-title">Dublados em Português (Brasil)</h2>
+        <span class="cr-section-sub">Com os maiores dubladores do país</span>
+      </div>
+      <div class="cr-carousel-controls">
+        <button class="cr-carousel-btn" data-target="carouselDubbed" data-dir="-1">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+        </button>
+        <button class="cr-carousel-btn" data-target="carouselDubbed" data-dir="1">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+        </button>
+      </div>
+    </div>
+    <div class="cr-carousel-track-wrapper">
+      <div class="cr-cards-carousel" id="carouselDubbed"></div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Section 4: Dedicated Photo Gallery Spotlight (100% Photos)
+       ======================================================================== -->
+  <section class="cr-gallery-spotlight" id="fotos">
+    <div class="cr-content-section" style="margin: 0 auto;">
+      <div class="cr-section-header">
+        <div class="cr-section-title-wrap">
+          <h2 class="cr-section-title">Galeria de Fotos dos Animes</h2>
+          <span class="cr-section-sub">Pôsteres oficiais e capturas de tela panorâmicas</span>
+        </div>
+      </div>
+      <p style="color: var(--cr-text-secondary); font-size: 0.95rem; margin-top: -10px;">
+        Clique em qualquer foto para abrir o visualizador ampliado (Lightbox) em tela cheia com alta resolução.
+      </p>
+      <div class="cr-gallery-grid" id="photoGalleryGrid"></div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Section 5: All Catalog Filtered Grid
+       ======================================================================== -->
+  <section class="cr-content-section" id="todosAnimesSec">
+    <div class="cr-section-header">
+      <div class="cr-section-title-wrap">
+        <h2 class="cr-section-title" id="gridSectionTitle">Catálogo Completo</h2>
+        <span class="cr-section-sub">Explore todos os títulos disponíveis</span>
+      </div>
+    </div>
+    <div class="cr-cards-grid" id="mainGrid"></div>
+  </section>
+
+  <!-- ========================================================================
+       Section 6: Premium Plans & Pricing
+       ======================================================================== -->
+  <section class="cr-premium-section" id="planos">
+    <div class="cr-premium-header">
+      <div class="cr-premium-badge">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+        Experimente Grátis
+      </div>
+      <h2>Crunchyroll Premium</h2>
+      <p>Aproveite acesso ilimitado a todas as galerias de fotos, lançamentos simulcasts e catálogo completo sem anúncios.</p>
+    </div>
+
+    <div class="cr-plans-grid">
+      <!-- Plan 1: Fan -->
+      <div class="cr-plan-card">
+        <h3 class="cr-plan-name">Fan</h3>
+        <div class="cr-plan-price">R$ 14,99 <span>/mês</span></div>
+        <p class="cr-plan-desc">Acesso ilimitado à biblioteca de animes e fotos oficiais sem propagandas.</p>
+        <ul class="cr-plan-features">
+          <li><span class="cr-plan-check">✓</span> Sem anúncios em toda a plataforma</li>
+          <li><span class="cr-plan-check">✓</span> Acesso a todas as fotos e lançamentos</li>
+          <li><span class="cr-plan-check">✓</span> Novos episódios 1h após a exibição no Japão</li>
+          <li><span class="cr-plan-check">✓</span> Transmissão em 1 tela simultânea</li>
+        </ul>
+        <button class="cr-plan-btn cr-plan-btn-outline" onclick="showToast('Plano Fan selecionado! 14 dias de teste grátis iniciados.')">Começar 14 Dias Grátis</button>
+      </div>
+
+      <!-- Plan 2: Mega Fan (Mais Popular) -->
+      <div class="cr-plan-card highlight">
+        <div class="cr-plan-ribbon">Mais Popular</div>
+        <h3 class="cr-plan-name">Mega Fan</h3>
+        <div class="cr-plan-price">R$ 19,99 <span>/mês</span></div>
+        <p class="cr-plan-desc">O melhor para fãs exigentes com múltiplos dispositivos e fotos offline.</p>
+        <ul class="cr-plan-features">
+          <li><span class="cr-plan-check">✓</span> Sem anúncios em toda a plataforma</li>
+          <li><span class="cr-plan-check">✓</span> Acesso completo a todas as fotos e pôsteres</li>
+          <li><span class="cr-plan-check">✓</span> Novos episódios 1h após a exibição no Japão</li>
+          <li><span class="cr-plan-check">✓</span> <strong>4 telas simultâneas</strong> ao mesmo tempo</li>
+          <li><span class="cr-plan-check">✓</span> <strong>Modo offline</strong> para salvar fotos e dados</li>
+          <li><span class="cr-plan-check">✓</span> Acesso prioritário a eventos Crunchyroll Expo</li>
+        </ul>
+        <button class="cr-plan-btn cr-plan-btn-primary" onclick="showToast('Plano Mega Fan ativado! Aproveite 14 dias grátis!')">Começar 14 Dias Grátis</button>
+      </div>
+
+      <!-- Plan 3: Mega Fan Anual -->
+      <div class="cr-plan-card">
+        <h3 class="cr-plan-name">Mega Fan (12 Meses)</h3>
+        <div class="cr-plan-price">R$ 199,99 <span>/ano</span></div>
+        <p class="cr-plan-desc">Economize 16% com o pagamento anual de todas as vantagens Mega Fan.</p>
+        <ul class="cr-plan-features">
+          <li><span class="cr-plan-check">✓</span> Todas as vantagens do plano Mega Fan</li>
+          <li><span class="cr-plan-check">✓</span> <strong>Economia de 16%</strong> sobre a mensalidade</li>
+          <li><span class="cr-plan-check">✓</span> 4 telas simultâneas e modo offline</li>
+          <li><span class="cr-plan-check">✓</span> Desconto exclusivo de R$ 50 na loja oficial</li>
+        </ul>
+        <button class="cr-plan-btn cr-plan-btn-outline" onclick="showToast('Plano Mega Fan Anual ativado com 16% de desconto!')">Assinar Plano Anual</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Section 7: Compatible Devices
+       ======================================================================== -->
+  <section class="cr-devices-section">
+    <h3 class="cr-devices-title">Disponível em seus dispositivos favoritos</h3>
+    <p class="cr-devices-sub">Acesse de onde estiver: na TV da sala, no smartphone, no videogame ou no computador.</p>
+    <div class="cr-devices-icons">
+      <div class="cr-device-item">
+        <svg class="cr-device-icon" viewBox="0 0 24 24"><path d="M21 3H3c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h5v2h8v-2h5c1.1 0 1.99-.9 1.99-2L23 5c0-1.1-.9-2-2-2zm0 14H3V5h18v12z"/></svg>
+        <span>Smart TVs</span>
+      </div>
+      <div class="cr-device-item">
+        <svg class="cr-device-icon" viewBox="0 0 24 24"><path d="M17 1.01L7 1c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-1.99-2-1.99zM17 19H7V5h10v14z"/></svg>
+        <span>iOS & Android</span>
+      </div>
+      <div class="cr-device-item">
+        <svg class="cr-device-icon" viewBox="0 0 24 24"><path d="M21 6H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h18c1.1 0 2-.9 2-2V8c0-1.1-.9-2-2-2zm-10 7H8v3H6v-3H3v-2h3V8h2v3h3v2zm4.5 2c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm4-3c-.83 0-1.5-.67-1.5-1.5S18.67 9 19.5 9s1.5.67 1.5 1.5-.67 1.5-1.5 1.5z"/></svg>
+        <span>PlayStation & Xbox</span>
+      </div>
+      <div class="cr-device-item">
+        <svg class="cr-device-icon" viewBox="0 0 24 24"><path d="M20 18c1.1 0 1.99-.9 1.99-2L22 6c0-1.1-.9-2-2-2H4c-1.1 0-2 .9-2 2v10c0 1.1.9 2 2 2H0v2h24v-2h-4zM4 6h16v10H4V6z"/></svg>
+        <span>Web & PC</span>
+      </div>
+      <div class="cr-device-item">
+        <svg class="cr-device-icon" viewBox="0 0 24 24"><path d="M1 18v3h3c0-1.66-1.34-3-3-3zm0-4v2c2.76 0 5 2.24 5 5h2c0-3.87-3.13-7-7-7zm0-4v2c4.97 0 9 4.03 9 9h2c0-6.08-4.93-11-11-11zm20-7H3c-1.1 0-2 .9-2 2v3h2V5h18v14h-7v2h7c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2z"/></svg>
+        <span>Chromecast & AirPlay</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================
+       Footer (Rodapé Crunchyroll PT-BR)
+       ======================================================================== -->
+  <footer class="cr-footer">
+    <div class="cr-footer-container">
+      <div class="cr-footer-top">
+        <div class="cr-footer-brand">
+          <a href="#" class="cr-logo-link">
+            <svg class="cr-logo-icon" viewBox="0 0 32 32" fill="none">
+              <circle cx="16" cy="16" r="16" fill="#F47521"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M16 6C10.4772 6 6 10.4772 6 16C6 21.5228 10.4772 26 16 26C21.5228 26 26 21.5228 26 16C26 10.4772 21.5228 6 16 6ZM16 11.5C13.5147 11.5 11.5 13.5147 11.5 16C11.5 18.4853 13.5147 20.5 16 20.5C18.4853 20.5 20.5 18.4853 20.5 16C20.5 13.5147 18.4853 11.5 16 11.5Z" fill="#141519"/>
+              <circle cx="18" cy="14" r="2.5" fill="#F47521"/>
+            </svg>
+            <span class="cr-logo-text">crunchy<span>roll</span></span>
+          </a>
+          <p>A maior plataforma de animes do mundo. Conectando milhões de fãs apaixonados pela cultura japonesa e animações lendárias.</p>
+        </div>
+
+        <div class="cr-footer-col">
+          <h4>Navegação</h4>
+          <ul class="cr-footer-links">
+            <li><a href="#populares">Mais Populares</a></li>
+            <li><a href="#simulcasts">Simulcasts</a></li>
+            <li><a href="#dublados">Animes Dublados</a></li>
+            <li><a href="#fotos">Galeria de Fotos</a></li>
+            <li><a href="#planos">Planos Premium</a></li>
+          </ul>
+        </div>
+
+        <div class="cr-footer-col">
+          <h4>Conecte-se</h4>
+          <ul class="cr-footer-links">
+            <li><a href="#">YouTube Oficial</a></li>
+            <li><a href="#">Instagram Crunchyroll</a></li>
+            <li><a href="#">Twitter / X</a></li>
+            <li><a href="#">TikTok Anime</a></li>
+            <li><a href="#">Discord da Comunidade</a></li>
+          </ul>
+        </div>
+
+        <div class="cr-footer-col">
+          <h4>Crunchyroll</h4>
+          <ul class="cr-footer-links">
+            <li><a href="#">Sobre a Empresa</a></li>
+            <li><a href="#">Ajuda / Suporte</a></li>
+            <li><a href="#">Termos de Uso</a></li>
+            <li><a href="#">Política de Privacidade</a></li>
+            <li><a href="#">Trabalhe Conosco</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cr-footer-middle">
+        <div class="cr-lang-picker">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/></svg>
+          <span>Português (Brasil)</span>
+        </div>
+
+        <div class="cr-socials">
+          <a href="#" class="cr-social-link" title="Twitter / X" aria-label="Twitter">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+          </a>
+          <a href="#" class="cr-social-link" title="Instagram" aria-label="Instagram">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <a href="#" class="cr-social-link" title="YouTube" aria-label="YouTube">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+        </div>
+      </div>
+
+      <div class="cr-footer-bottom">
+        <div class="cr-footer-disclaimer">
+          © Crunchyroll, LLC. Todos os direitos reservados. Projeto de demonstração estética inspirado no site da Crunchyroll Brasil. Modo exclusivo de <strong>galeria de fotos e imagens</strong> (sem reprodução de vídeo).
+        </div>
+        <div>Sony Pictures Entertainment & Aniplex</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================
+       Detail Modal (100% Photos, Episode Stills & Character Portraits)
+       ======================================================================== -->
+  <div class="cr-modal-backdrop" id="detailModal">
+    <div class="cr-modal">
+      <button class="cr-modal-close" id="modalCloseBtn" title="Fechar (Esc)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+      </button>
+
+      <div class="cr-modal-hero" id="modalHeroBg">
+        <div class="cr-modal-hero-gradient"></div>
+        <div class="cr-modal-hero-info">
+          <img src="" alt="Poster" class="cr-modal-poster" id="modalPoster">
+          <div class="cr-modal-details">
+            <h2 class="cr-modal-title" id="modalTitle">Título do Anime</h2>
+            <div class="cr-modal-native" id="modalNative">Título Original / Romaji</div>
+            <div class="cr-modal-meta-row" id="modalMetaRow"></div>
+            <div class="cr-modal-actions">
+              <button class="cr-modal-btn-queue" id="modalQueueBtn">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
+                <span>Adicionar à Minha Fila</span>
+              </button>
+              <button class="cr-btn-secondary" id="modalShareBtn" title="Compartilhar">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18 16.08c-.76 0-1.44.3-1.96.77L8.91 12.7c.05-.23.09-.46.09-.7s-.04-.47-.09-.7l7.05-4.11c.54.5 1.25.81 2.04.81 1.66 0 3-1.34 3-3s-1.34-3-3-3-3 1.34-3 3c0 .24.04.47.09.7L8.04 9.81C7.5 9.31 6.79 9 6 9c-1.66 0-3 1.34-3 3s1.34 3 3 3c.79 0 1.5-.31 2.04-.81l7.12 4.16c-.05.21-.08.43-.08.65 0 1.61 1.31 2.92 2.92 2.92 1.61 0 2.92-1.31 2.92-2.92s-1.31-2.92-2.92-2.92z"/></svg>
+                <span>Compartilhar</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cr-modal-body">
+        <!-- Synopsis Box -->
+        <div class="cr-modal-synopsis-box">
+          <div class="cr-modal-synopsis-title">Sinopse Oficial em Português</div>
+          <p class="cr-modal-synopsis-text" id="modalSynopsis"></p>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="cr-modal-tabs">
+          <button class="cr-modal-tab-btn active" data-tab="tabPhotos">📷 Galeria de Fotos</button>
+          <button class="cr-modal-tab-btn" data-tab="tabEpisodes">🎞️ Episódios & Stills</button>
+          <button class="cr-modal-tab-btn" data-tab="tabCast">👥 Personagens & Dublagem</button>
+        </div>
+
+        <!-- Tab 1: Galeria de Fotos (NO VIDEOS - 100% PHOTOS!) -->
+        <div class="cr-tab-pane active" id="tabPhotos">
+          <div class="cr-modal-gallery-grid" id="modalPhotosGrid"></div>
+        </div>
+
+        <!-- Tab 2: Episódios com Fotos -->
+        <div class="cr-tab-pane" id="tabEpisodes">
+          <div class="cr-episodes-list" id="modalEpisodesList"></div>
+        </div>
+
+        <!-- Tab 3: Personagens & Elenco de Dublagem PT-BR -->
+        <div class="cr-tab-pane" id="tabCast">
+          <div style="margin-bottom: 16px;">
+            <h4 style="font-size: 0.95rem; color: var(--cr-orange); margin-bottom: 8px;">Elenco Principal de Dublagem no Brasil</h4>
+            <div id="modalDubCastList" style="display: flex; flex-wrap: wrap; gap: 8px; font-size: 0.85rem; color: var(--cr-text-light);"></div>
+          </div>
+          <div class="cr-characters-grid" id="modalCharactersGrid"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       Watchlist Drawer ("Minha Fila")
+       ======================================================================== -->
+  <div class="cr-drawer-backdrop" id="watchlistDrawer">
+    <div class="cr-drawer">
+      <div class="cr-drawer-header">
+        <h3 class="cr-drawer-title">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="var(--cr-orange)"><path d="M17 3H7c-1.1 0-1.99.9-1.99 2L5 21l7-3 7 3V5c0-1.1-.9-2-2-2z"/></svg>
+          Minha Fila
+        </h3>
+        <button class="cr-modal-close" style="position: static; width: 34px; height: 34px;" id="closeDrawerBtn">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </div>
+
+      <div class="cr-drawer-body" id="watchlistContent">
+        <!-- Injected via JavaScript -->
+      </div>
+
+      <div class="cr-drawer-footer">
+        <button class="cr-drawer-btn-clear" id="clearWatchlistBtn">Limpar Minha Fila</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       Fullscreen Photo Lightbox Viewer
+       ======================================================================== -->
+  <div class="cr-lightbox" id="photoLightbox">
+    <div class="cr-lightbox-header">
+      <div class="cr-lightbox-caption">
+        <span id="lightboxTitle">Foto Oficial</span>
+        <span class="cr-lightbox-counter" id="lightboxCounter">1 / 1</span>
+      </div>
+      <button class="cr-modal-close" style="position: static;" id="lightboxCloseBtn" title="Fechar (Esc)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+      </button>
+    </div>
+
+    <div class="cr-lightbox-body">
+      <button class="cr-lightbox-nav cr-lightbox-prev" id="lightboxPrevBtn" title="Foto Anterior">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      </button>
+      <img src="" alt="Foto em alta resolução" class="cr-lightbox-img" id="lightboxImg">
+      <button class="cr-lightbox-nav cr-lightbox-next" id="lightboxNextBtn" title="Próxima Foto">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- ========================================================================
+       Toast Notification Component
+       ======================================================================== -->
+  <div class="cr-toast" id="toast">
+    <span class="cr-toast-icon">✓</span>
+    <span id="toastMsg">Notificação Crunchyroll</span>
+  </div>
+
+  <!-- Scripts -->
+  <script src="anime-data.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
